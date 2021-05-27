@@ -1,0 +1,6 @@
+﻿  pokerRuke.c
+C:\Users\Ilija\source\repos\Projekt_final\Projekt_final\pokerRuke.c(17,42): warning C4013: 'rand' undefined; assuming extern returning int
+  pokerMain.c
+C:\Users\Ilija\source\repos\Projekt_final\Projekt_final\pokerMain.c(8,21): warning C4244: 'function': conversion from 'time_t' to 'unsigned int', possible loss of data
+  Generating Code...
+  Projekt_final.vcxproj -> C:\Users\Ilija\source\repos\Projekt_final\Debug\Projekt_final.exe
