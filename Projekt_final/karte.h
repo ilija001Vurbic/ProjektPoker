@@ -1,9 +1,17 @@
 #pragma once
 #ifndef KARTE_H
+#include <stdio.h>
 struct Karta {
     int vrijednost;
     int boja;
 };
+
+struct Igrac {
+	char ime[20];
+	int bodovi;
+};
+
+struct Igrac igrac1, igrac2;
 
 struct Ruka {
     struct Karta karte[5];
@@ -22,7 +30,9 @@ static const char* vrijednostString[] = {"Dva","Tri","Cetiri","Pet","Sest","Seda
 
 static const char* bojaString[] = {"Srce","Tref","Karo","Pik" };
 
-static const char* rankString[] = {"Najvisa karta","Jedan par","Dva para","Tris","Straight","Boja","Full House","Poker","Skala u boji" };
+static const char* rankString[] = {"Najvisa karta","Jedan par","Dva para","Tris","Straight","Boja","Full House","Poker","Skala u boji","Nula"};
+
+void unosIgraca();
 
 void generiranjeRuke();
 
@@ -31,4 +41,8 @@ struct Karta dijeliKartu();
 void ispisiRuke();
 
 void usporediRuke();
+
+FILE* otvoriFile();
+
+void ljestvica();
 #endif // !KARTE_H
