@@ -9,14 +9,12 @@ int main() {
 	int end = 1, endPoker = 1;
 	int odabir, pokerOdabir;
 	srand(time(NULL));
-
 	while (end)
 	{
 		printf("------------------------POKER---------------------------");
 		printf("\nOdaberite:\n");
 		/*unosMain:*/printf("\n1 - Unesite imena igraca\n2 - Zapocnite igru\n3 - Prikazi ljestvicu\n4 - Izadi iz igre\n");
 		scanf("%d", &odabir);
-
 		switch (odabir)
 		{
 		case 1:
@@ -38,6 +36,7 @@ int main() {
 					//goto unosPoker;
 					continue;
 				case 2:
+					generiranjeRuke();
 					ispisiRuke();
 					usporediRuke();
 					//goto unosPoker;
@@ -54,6 +53,7 @@ int main() {
 				}
 				break;
 		case 3:
+			upisiFile();
 			ljestvica();
 			//goto unosMain;
 			break;

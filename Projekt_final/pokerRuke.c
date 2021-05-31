@@ -3,12 +3,14 @@
 #include <stdlib.h>
 #include "karte.h"
 #include <ctype.h>
+#include <string.h>
+#define strLen strlen(str)
 
 void unosIgraca() {
 	printf("Unesite ime za prvog igraca: ");
-	scanf("%s", &igrac1.ime);
+	scanf("%s", &sviIgraci[0].ime);
 	printf("Unesite ime za drugog igraca: ");
-	scanf("%s", &igrac2.ime);
+	scanf("%s", &sviIgraci[1].ime);
 }
 
 void generiranjeRuke() {
@@ -41,131 +43,137 @@ struct Karta dijeliKartu() {
 
 void ispisiRuke() {
 	int i;
-	printf("Igrac %s ima:\n", igrac1.ime);
+	printf("Igrac %s ima:\n", sviIgraci[0].ime);
 	for (i = 0; i < 5; i++)
 		printf("%s %s\n", vrijednostString[ruka1.karte[i].vrijednost], bojaString[ruka1.karte[i].boja]);
-	printf("\nIgrac %s ima:\n", igrac2.ime);
+	printf("\nIgrac %s ima:\n", sviIgraci[1].ime);
 	for (i = 0; i < 5; i++)
 		printf("%s %s\n", vrijednostString[ruka2.karte[i].vrijednost], bojaString[ruka2.karte[i].boja]);
 }
 
 void usporediRuke() {
-	int i, j;
-	int ruka1VrijednostCnt[13];
-	int ruka1BojaCnt[4];
-	int ruka2VrijednostCnt[13];
-	int ruka2BojaCnt[4];
-	memset(ruka1VrijednostCnt, 0, sizeof(ruka1VrijednostCnt));
-	memset(ruka1BojaCnt, 0, sizeof(ruka1BojaCnt));
-	memset(ruka2VrijednostCnt, 0, sizeof(ruka2VrijednostCnt));
-	memset(ruka2BojaCnt, 0, sizeof(ruka2BojaCnt));
-	for (i = 0; i < 5; i++) {
-		ruka1VrijednostCnt[ruka1.karte[i].vrijednost]++;
-		ruka1BojaCnt[ruka1.karte[i].boja]++;
-		ruka2VrijednostCnt[ruka2.karte[i].vrijednost]++;
-		ruka2BojaCnt[ruka2.karte[i].boja]++;
-	}
-	int r1Rank = 0, r1Consec = 0, r1Straight = 0, r1Flush = 0, r1Four = 0, r1Three = 0, r1Pairs = 0, r1Nula=0;
-	int r2Rank = 0, r2Consec = 0, r2Straight = 0, r2Flush = 0, r2Four = 0, r2Three = 0, r2Pairs = 0, r2Nula=0;
-	for (i = 0; i < 5; i++) {
-		if (ruka1BojaCnt[i] == 5)
-			r1Flush = 1;
-		if (ruka2BojaCnt[i] == 5)
-			r2Flush = 1;
-	}
-	i = 0;
-	while (ruka1VrijednostCnt[i] == 0)
-		i++;
-	for (; i < 3 && ruka1VrijednostCnt[i]; i++)
-		r1Consec++;
-	if (r1Consec == 5)
-		r1Straight = 1;
-	i = 0;
-	while (ruka2VrijednostCnt[i] == 0)
-		i++;
-	for (; i < 3 && ruka2VrijednostCnt[i]; i++)
-		r2Consec++;
-	if (r2Consec == 5)
-		r2Straight = 1;
-	for (i = 0; i < 14; i++) {
-		if (ruka1VrijednostCnt[i] == 4)
-			r1Four = 1;
-		if (ruka1VrijednostCnt[i] == 3)
-			r1Three = 1;
-		if (ruka1VrijednostCnt[i] == 2)
-			r1Pairs++;
-	}
-	for (i = 0; i < 14; i++) {
-		if (ruka2VrijednostCnt[i] == 4)
-			r2Four = 1;
-		if (ruka1VrijednostCnt[i] == 3)
-			r2Three = 1;
-		if (ruka1VrijednostCnt[i] == 2)
-			r2Pairs++;
-	}
-	if (r1Straight && r1Flush)
-		r1Rank = 8;
-	else if (r1Four)
-		r1Rank = 7;
-	else if (r1Three && r1Pairs == 1)
-		r1Rank = 6;
-	else if (r1Flush)
-		r1Rank = 5;
-	else if (r1Straight)
-		r1Rank = 4;
-	else if (r1Three)
-		r1Rank = 3;
-	else if (r1Pairs == 2)
-		r1Rank = 2;
-	else if (r1Pairs == 1)
-		r1Rank = 1;
-	else
-		r1Rank = r1Nula;
-	if (r2Straight && r2Flush)
-		r2Rank = 8;
-	else if (r2Four)
-		r2Rank = 7;
-	else if (r2Three && r2Pairs == 1)
-		r2Rank = 6;
-	else if (r2Flush)
-		r2Rank = 5;
-	else if (r2Straight)
-		r2Rank = 4;
-	else if (r2Three)
-		r2Rank = 3;
-	else if (r2Pairs == 2)
-		r2Rank = 2;
-	else if (r2Pairs == 1)
-		r2Rank = 1;
-	else
-		r2Rank = r2Nula;
+    int i, j;
+    int ruka1VrijednostCnt[13];
+    int ruka1BojaCnt[4];
+    int ruka2VrijednostCnt[13];
+    int ruka2BojaCnt[4];
 
-	printf("\nIgrac %s ima %s.\n", igrac1.ime, rankString[r1Rank]);
-	printf("Igrac %s ima %s.\n", igrac2.ime, rankString[r2Rank]);
+    memset(ruka1VrijednostCnt, 0, sizeof(ruka1VrijednostCnt));
+    memset(ruka1BojaCnt, 0, sizeof(ruka1BojaCnt));
+    memset(ruka2VrijednostCnt, 0, sizeof(ruka2VrijednostCnt));
+    memset(ruka2BojaCnt, 0, sizeof(ruka2BojaCnt));
 
-	igrac1.bodovi = 0;
-	igrac2.bodovi = 0;
-	if (r1Rank > r2Rank)
-	{
-		printf("Igrac %s je pobjedio!!!\n", igrac1.ime);
-		igrac1.bodovi += 100;
-	}
+    for (i = 0; i < 5; i++) {
+        ruka1VrijednostCnt[ruka1.karte[i].vrijednost]++;
+        ruka1BojaCnt[ruka1.karte[i].boja]++;
+        ruka2VrijednostCnt[ruka2.karte[i].vrijednost]++;
+        ruka2BojaCnt[ruka2.karte[i].boja]++;
+    }
 
-	else if (r2Rank > r1Rank) {
-		printf("Igrac %s je pobjedio!!!\n", igrac2.ime);
-		igrac2.bodovi += 100;
-	}
-	else
-	{
-		printf("Nerjeseno!!!\n");
-		igrac1.bodovi += 50;
-		igrac2.bodovi += 50;
-	}
+    int h1Rank = 0, h1Consec = 0, h1Straight = 0, h1Flush = 0, h1Four = 0, h1Three = 0, h1Pairs = 0;
+    int h2Rank = 0, h2Consec = 0, h2Straight = 0, h2Flush = 0, h2Four = 0, h2Three = 0, h2Pairs = 0;
+
+    for (i = 0; i < 5; i++) {
+        if (ruka1BojaCnt[i] == 5)
+            h1Flush = 1;
+        if (ruka2BojaCnt[i] == 5)
+            h2Flush = 1;
+    }
+    i = 0;
+    while (ruka1VrijednostCnt[i] == 0)
+        i++;
+    for (; i < 3 && ruka1VrijednostCnt[i]; i++)
+        h1Consec++;
+    if (h1Consec == 5)
+        h1Straight = 1;
+
+    i = 0;
+    while (ruka2VrijednostCnt[i] == 0)
+        i++;
+    for (; i < 3 && ruka2VrijednostCnt[i]; i++)
+        h2Consec++;
+    if (h2Consec == 5)
+        h2Straight = 1;
+
+    for (i = 0; i < 14; i++) {
+        if (ruka1VrijednostCnt[i] == 4)
+            h1Four = 1;
+        if (ruka1VrijednostCnt[i] == 3)
+            h1Three = 1;
+        if (ruka1VrijednostCnt[i] == 2)
+            h1Pairs++;
+    }
+    for (i = 0; i < 14; i++) {
+        if (ruka2VrijednostCnt[i] == 4)
+            h2Four = 1;
+        if (ruka2VrijednostCnt[i] == 3)
+            h2Three = 1;
+        if (ruka2VrijednostCnt[i] == 2)
+            h2Pairs++;
+    }
+
+    // ruka 1 ranking
+    if (h1Straight && h1Flush)
+        h1Rank = 8;
+    else if (h1Four)
+        h1Rank = 7;
+    else if (h1Three && h1Pairs == 1)
+        h1Rank = 6;
+    else if (h1Flush)
+        h1Rank = 5;
+    else if (h1Straight)
+        h1Rank = 4;
+    else if (h1Three)
+        h1Rank = 3;
+    else if (h1Pairs == 2)
+        h1Rank = 2;
+    else if (h1Pairs == 1)
+        h1Rank = 1;
+    else
+        h1Rank = 0;
+
+    // ruka 2 ranking
+    if (h2Straight && h2Flush)
+        h2Rank = 8;
+    else if (h2Four)
+        h2Rank = 7;
+    else if (h2Three && h2Pairs == 1)
+        h2Rank = 6;
+    else if (h2Flush)
+        h2Rank = 5;
+    else if (h2Straight)
+        h2Rank = 4;
+    else if (h2Three)
+        h2Rank = 3;
+    else if (h2Pairs == 2)
+        h2Rank = 2;
+    else if (h2Pairs == 1)
+        h2Rank = 1;
+    else
+        h2Rank = 0;
+
+    printf("\nIgrac %s ima %s.\n", sviIgraci[0].ime, rankString[h1Rank]);
+    printf("Igrac %s ima %s.\n", sviIgraci[1].ime, rankString[h2Rank]);
+
+    if (h1Rank > h2Rank) {
+        printf("%s je pobjednik!!!\n", sviIgraci[0].ime);
+        sviIgraci[0].bodovi += 100;
+    }
+    else if (h2Rank > h1Rank) {
+        printf("%s je pobjednik!!!\n", sviIgraci[1].ime);
+        sviIgraci[1].bodovi += 100;
+    }
+    else
+    {
+        printf("Nerjeseno!!!\n");
+        sviIgraci[0].bodovi += 50;
+        sviIgraci[1].bodovi += 50;
+    }
 }
 
 FILE* otvoriFile() {
 	FILE* fp = NULL;
-	fp = fopen("C:\\Users\\student\\ljestvica.txt", "a");
+    fp = fopen("ljestvica.txt", "a+");
 	if (fp == NULL)
 	{
 		printf("Datoteka se ne moze otvoriti.");
@@ -176,18 +184,72 @@ FILE* otvoriFile() {
 	}
 }
 
+void bubbleSort(char a[][20], int n) {
+    char temp[100];
+
+    for (int j = 0; j < n - 1; j++)
+    {
+        for (int i = j + 1; i < n; i++)
+        {
+            if (strcmp(a[j], a[i]) > 0)
+            {
+                strcpy(temp, a[j]);
+                strcpy(a[j], a[i]);
+                strcpy(a[i], temp);
+            }
+        }
+    }
+}
+
+
+void upisiFile() {
+    FILE* fp = otvoriFile();
+    fprintf(fp, "\n%s %d\n", sviIgraci[0].ime, sviIgraci[0].bodovi);
+    fprintf(fp, "\n%s %d\n", sviIgraci[1].ime, sviIgraci[1].bodovi);
+}
+
+void strUint(char str[], int n) {
+    /*int* arr = (int*)malloc(strLen * sizeof(int));
+    int j = 0, i;
+    for (i = 0; str[i] != '\0'; i++) {
+        if (str[i] == ',')
+            continue;
+        if (str[i] == ' ') {
+            j++;
+        }
+        else {
+            *(arr + j) = *(arr + j) * 10 + (str[i] - 48);
+        }
+    }
+    for (i = 0; i <= j; i++) {
+        printf("%d\n", *(arr + i));
+    }*/
+}
+
 void ljestvica()
 {
-	printf("%s %d", igrac1.ime, igrac1.bodovi);
-	printf("\n%s %d\n", igrac2.ime, igrac2.bodovi);
-	FILE* fp = otvoriFile();
-	if (igrac1.bodovi < igrac2.bodovi) {
-		fprintf(fp, "\n%s %d\n", igrac2.ime, igrac2.bodovi);
-		fprintf(fp, "\n%s %d\n", igrac1.ime, igrac1.bodovi);
-	}
-	else {
-		fprintf(fp, "\n%s %d\n", igrac1.ime, igrac1.bodovi);
-		fprintf(fp, "\n%s %d\n", igrac2.ime, igrac2.bodovi);
-	}
+    FILE* fp = otvoriFile();
+    char line[128][20];
+    int i = 0;
+    int tot = 0;
+    while (fgets(line[i], 20, fp))
+    {
+        line[i][strlen(line[i]) - 1] = '\0';
+        i++;
+    }
+    tot = i;
+    for (i = 0; i < tot; ++i)
+    {
+        printf(" %s\n", line[i]);
+       
+    } 
+    bubbleSort(line,tot);
+    printf("\nSorted:\n");
+    for (i = 0; i < tot; ++i)
+    {
+        printf(" %s\n", line[i]);
+    }
+    printf("Integers:\n");
+    strUint(line,tot);
 }
 

@@ -1,17 +1,21 @@
 #pragma once
 #ifndef KARTE_H
+#define KARTE_H
 #include <stdio.h>
+#define MAXSZ 100
+
 struct Karta {
     int vrijednost;
     int boja;
 };
 
-struct Igrac {
+typedef struct Igrac {
 	char ime[20];
 	int bodovi;
-};
+}igrac;
 
-struct Igrac igrac1, igrac2;
+//igrac igrac1,igrac2;
+igrac sviIgraci[100];
 
 struct Ruka {
     struct Karta karte[5];
@@ -43,6 +47,8 @@ void ispisiRuke();
 void usporediRuke();
 
 FILE* otvoriFile();
+
+void upisiFile();
 
 void ljestvica();
 #endif // !KARTE_H

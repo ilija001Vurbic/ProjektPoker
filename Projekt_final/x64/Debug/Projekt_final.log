@@ -1,1 +1,5 @@
-﻿  Projekt_final.vcxproj -> C:\Users\student\source\repos\ProjektPoker-master\x64\Debug\Projekt_final.exe
+﻿  pokerRuke.c
+D:\ProjektPoker-master\Projekt_final\pokerRuke.c(55,12): warning C4101: 'j': unreferenced local variable
+D:\ProjektPoker-master\Projekt_final\pokerRuke.c(255,17): warning C4047: 'function': 'char *' differs in levels of indirection from 'char [128][20]'
+D:\ProjektPoker-master\Projekt_final\pokerRuke.c(255,13): warning C4024: 'strUint': different types for formal and actual parameter 1
+  Projekt_final.vcxproj -> D:\ProjektPoker-master\x64\Debug\Projekt_final.exe
