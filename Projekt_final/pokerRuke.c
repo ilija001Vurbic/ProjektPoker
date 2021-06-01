@@ -52,7 +52,7 @@ void ispisiRuke() {
 }
 
 void usporediRuke() {
-    int i, j;
+    int i;
     int ruka1VrijednostCnt[13];
     int ruka1BojaCnt[4];
     int ruka2VrijednostCnt[13];
@@ -204,33 +204,21 @@ void bubbleSort(char a[][20], int n) {
 
 void upisiFile() {
     FILE* fp = otvoriFile();
-    fprintf(fp, "\n%s %d\n", sviIgraci[0].ime, sviIgraci[0].bodovi);
-    fprintf(fp, "\n%s %d\n", sviIgraci[1].ime, sviIgraci[1].bodovi);
+    fprintf(fp, "%s %d\n", sviIgraci[0].ime, sviIgraci[0].bodovi);
+    fprintf(fp, "%s %d\n", sviIgraci[1].ime, sviIgraci[1].bodovi);
 }
 
-void strUint(char str[], int n) {
-    /*int* arr = (int*)malloc(strLen * sizeof(int));
-    int j = 0, i;
-    for (i = 0; str[i] != '\0'; i++) {
-        if (str[i] == ',')
-            continue;
-        if (str[i] == ' ') {
-            j++;
-        }
-        else {
-            *(arr + j) = *(arr + j) * 10 + (str[i] - 48);
-        }
-    }
-    for (i = 0; i <= j; i++) {
-        printf("%d\n", *(arr + i));
-    }*/
+void sortBodovi(char str[][20]) {
+	char razmak = " ";
+	char* bodovi = strchr(str, razmak);
+	printf("%s\n", *(bodovi+1));
 }
 
 void ljestvica()
 {
     FILE* fp = otvoriFile();
     char line[128][20];
-    int i = 0;
+    int i = 0, j=0;
     int tot = 0;
     while (fgets(line[i], 20, fp))
     {
@@ -240,16 +228,22 @@ void ljestvica()
     tot = i;
     for (i = 0; i < tot; ++i)
     {
-        printf(" %s\n", line[i]);
+        printf("%s \n", line[i]);
        
     } 
     bubbleSort(line,tot);
-    printf("\nSorted:\n");
+    printf("\nSortirano abecedno:\n");
     for (i = 0; i < tot; ++i)
     {
-        printf(" %s\n", line[i]);
+        printf("%s \n", line[i]);
     }
-    printf("Integers:\n");
-    strUint(line,tot);
+	printf("\nSortirano po bodovima:\n");
+	for (i = 0; i < tot; ++i)
+    {
+		sortBodovi(line[i]);
+    }
+	/*for (i = 0; i < tot; ++i)
+	{
+		printf("%s \n", line[i]);
+	}*/
 }
-

@@ -8,7 +8,7 @@ int main() {
 	spil.brojPodKarata = 0;
 	int end = 1, endPoker = 1;
 	int odabir, pokerOdabir;
-	srand(time(NULL));
+	srand((unsigned)time(NULL));
 	while (end)
 	{
 		printf("------------------------POKER---------------------------");
@@ -26,7 +26,7 @@ int main() {
 			while (endPoker)
 			{
 				printf("----------------PODIZBORNIK-------------------");
-			/*unosPoker:*/ printf("\n1 - Podijeli karte\n2 - Pokazi karte\n3 - Natrag na izbornik\n");
+			/*unosPoker:*/ printf("\n1 - Podijeli karte\n2 - Pokazi karte\n3 - Unesi bodove u file\n4 - Natrag na izbornik\n");
 				scanf("%d", &pokerOdabir);
 				switch (pokerOdabir)
 				{
@@ -42,6 +42,10 @@ int main() {
 					//goto unosPoker;
 					continue;
 				case 3:
+					upisiFile();
+					printf("\nUspjesno upisano u file.\n");
+					continue;
+				case 4:
 					printf("\nVracanje na glavni izbornik.\n");
 					endPoker = 0;
 					//goto unosMain;
@@ -53,9 +57,8 @@ int main() {
 				}
 				break;
 		case 3:
-			upisiFile();
 			ljestvica();
-			//goto unosMain;
+			//goto unosMain;s
 			break;
 		case 4:
 			printf("\nZavrsetak programa.\n");

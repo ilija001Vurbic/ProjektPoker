@@ -1,13 +1,14 @@
-1258 50
-1598 50
-1258 50
-1598 50
 Ramal 100
 Ilija 0
 Ilija 50
 Pero 150
 Pero 100
 Nikola 0
- 0
-
- 0
+Marko 300
+Marin 400
+Marko 0
+Marin 100
+Matej 0
+Branimir 100
+Matej 900
+Branimir 700
