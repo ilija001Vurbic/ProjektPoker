@@ -2,7 +2,6 @@
 #ifndef KARTE_H
 #define KARTE_H
 #include <stdio.h>
-#define MAXSZ 100
 
 struct Karta {
     int vrijednost;
@@ -14,7 +13,6 @@ typedef struct Igrac {
 	int bodovi;
 }igrac;
 
-//igrac igrac1,igrac2;
 igrac sviIgraci[100];
 
 struct Ruka {
@@ -50,5 +48,9 @@ FILE* otvoriFile();
 
 void upisiFile();
 
+void sortBodovi();
+
 void ljestvica();
+
+void traziIgraca();
 #endif // !KARTE_H

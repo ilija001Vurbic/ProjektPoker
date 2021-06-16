@@ -12,3 +12,7 @@ Matej 0
 Branimir 100
 Matej 900
 Branimir 700
+Brekalo 100
+Skoric 0
+Hrvoje 350
+Simun 550 

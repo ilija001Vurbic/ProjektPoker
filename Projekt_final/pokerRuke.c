@@ -4,7 +4,6 @@
 #include "karte.h"
 #include <ctype.h>
 #include <string.h>
-#define strLen strlen(str)
 
 void unosIgraca() {
 	printf("Unesite ime za prvog igraca: ");
@@ -184,6 +183,12 @@ FILE* otvoriFile() {
 	}
 }
 
+void upisiFile() {
+    FILE* fp = otvoriFile();
+    fprintf(fp, "%s %d\n", sviIgraci[0].ime, sviIgraci[0].bodovi);
+    fprintf(fp, "%s %d\n", sviIgraci[1].ime, sviIgraci[1].bodovi);
+}
+
 void bubbleSort(char a[][20], int n) {
     char temp[100];
 
@@ -201,17 +206,58 @@ void bubbleSort(char a[][20], int n) {
     }
 }
 
-
-void upisiFile() {
-    FILE* fp = otvoriFile();
-    fprintf(fp, "%s %d\n", sviIgraci[0].ime, sviIgraci[0].bodovi);
-    fprintf(fp, "%s %d\n", sviIgraci[1].ime, sviIgraci[1].bodovi);
+void Swap(char** t1, char** t2)
+{
+    char* t;
+    t = *t1;
+    *t1 = *t2;
+    *t2 = t;
 }
 
-void sortBodovi(char str[][20]) {
-	char razmak = " ";
-	char* bodovi = strchr(str, razmak);
-	printf("%s\n", *(bodovi+1));
+void bubbleSort2(int arr[], int n, char line[][20])
+{
+    int c, d;
+    int swap;
+    for (c = 0; c < n - 1; c++)
+    {
+        for (d = 0; d < n - c - 1; d++)
+        {
+            if (arr[d] < arr[d + 1])
+            {
+                swap = arr[d];
+                arr[d] = arr[d + 1];
+                arr[d + 1] = swap;
+                Swap(&line[d], &line[d + 1]);
+            }
+        }
+    }
+}
+
+void sortBodovi() {
+    FILE* fp = otvoriFile();
+    int x[128];
+    char line[128][20];
+    int i = 0, j = 0;
+    int tot = 0;
+    while (fgets(line[i], 20, fp))
+    {
+        line[i][strlen(line[i]) - 1] = '\0';
+        i++;
+    }
+    tot = i;
+    for (int i = 0; i < tot; i++)
+    {   
+        char* sep = strchr(line[i], ' ');
+        *sep = '\0';
+        x[i] = atoi(sep + 1);
+    }
+    bubbleSort2(x, tot, line);
+    printf("Sortirano po bodovima:\n");
+    for (int i = 0; i < tot; i++)
+    {
+        printf("%s %d\n", line[i],x[i]);
+    }
+    fclose(fp);
 }
 
 void ljestvica()
@@ -237,13 +283,39 @@ void ljestvica()
     {
         printf("%s \n", line[i]);
     }
-	printf("\nSortirano po bodovima:\n");
-	for (i = 0; i < tot; ++i)
+    printf("\n");
+    fclose(fp);
+}
+
+void traziIgraca()
+{
+    FILE* fp = otvoriFile();
+    char line[128][20];
+    char search[20];
+    int i = 0, j = 0;
+    int tot = 0;
+    while (fgets(line[i], 20, fp))
     {
-		sortBodovi(line[i]);
+        line[i][strlen(line[i]) - 1] = '\0';
+        i++;
     }
-	/*for (i = 0; i < tot; ++i)
-	{
-		printf("%s \n", line[i]);
-	}*/
+    tot = i;
+    for (int i = 0; i < tot; i++)
+    {
+        char* sep = strchr(line[i], ' ');
+        *sep = '\0';
+    }
+    int found = 0;
+    printf("Unesite ime koje zelite pretraziti: ");
+    scanf("%s", search);
+    for (i = 0; i < tot; i++)
+    {
+        if (strcmp(search, line[i]) == 0)
+        {
+            found = 1;
+            printf("Ime pronadeno u %d. retku nesortirane ljestvice\n", i + 1);
+        }
+    }
+    if (found == 0) printf("Igrac s trazenim imenom nije igrao ovu igru.");
+    fclose(fp);
 }

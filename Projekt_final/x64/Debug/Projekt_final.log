@@ -1,9 +1,6 @@
 ﻿  pokerRuke.c
-C:\Users\student\source\repos\ProjektPoker-master\Projekt_final\pokerRuke.c(213,27): warning C4047: 'function': 'const char *' differs in levels of indirection from 'char (*)[20]'
-C:\Users\student\source\repos\ProjektPoker-master\Projekt_final\pokerRuke.c(213,27): warning C4024: 'strchr': different types for formal and actual parameter 1
-C:\Users\student\source\repos\ProjektPoker-master\Projekt_final\pokerRuke.c(214,9): warning C4477: 'printf' : format string '%s' requires an argument of type 'char *', but variadic argument 1 has type 'int'
-C:\Users\student\source\repos\ProjektPoker-master\Projekt_final\pokerRuke.c(214,9): warning C4313: 'printf': '%s' in format string conflicts with argument 1 of type 'int'
-C:\Users\student\source\repos\ProjektPoker-master\Projekt_final\pokerRuke.c(212,1): warning C4047: 'initializing': 'char' differs in levels of indirection from 'char [2]'
-C:\Users\student\source\repos\ProjektPoker-master\Projekt_final\pokerRuke.c(243,21): warning C4047: 'function': 'char (*)[20]' differs in levels of indirection from 'char [20]'
-C:\Users\student\source\repos\ProjektPoker-master\Projekt_final\pokerRuke.c(243,21): warning C4024: 'sortBodovi': different types for formal and actual parameter 1
-  Projekt_final.vcxproj -> C:\Users\student\source\repos\ProjektPoker-master\x64\Debug\Projekt_final.exe
+D:\Poker_final\ProjektPoker-master\Projekt_final\pokerRuke.c(230,30): warning C4047: 'function': 'char **' differs in levels of indirection from 'char (*)[20]'
+D:\Poker_final\ProjektPoker-master\Projekt_final\pokerRuke.c(230,22): warning C4024: 'Swap': different types for formal and actual parameter 1
+D:\Poker_final\ProjektPoker-master\Projekt_final\pokerRuke.c(230,44): warning C4047: 'function': 'char **' differs in levels of indirection from 'char (*)[20]'
+D:\Poker_final\ProjektPoker-master\Projekt_final\pokerRuke.c(230,32): warning C4024: 'Swap': different types for formal and actual parameter 2
+  Projekt_final.vcxproj -> D:\Poker_final\ProjektPoker-master\x64\Debug\Projekt_final.exe

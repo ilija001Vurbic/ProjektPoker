@@ -13,7 +13,7 @@ int main() {
 	{
 		printf("------------------------POKER---------------------------");
 		printf("\nOdaberite:\n");
-		/*unosMain:*/printf("\n1 - Unesite imena igraca\n2 - Zapocnite igru\n3 - Prikazi ljestvicu\n4 - Izadi iz igre\n");
+		/*unosMain:*/printf("\n1 - Unesite imena igraca\n2 - Zapocnite igru\n3 - Prikazi ljestvicu\n4 - Pretrazi igraca\n5 - Izadi iz igre\n");
 		scanf("%d", &odabir);
 		switch (odabir)
 		{
@@ -58,9 +58,14 @@ int main() {
 				break;
 		case 3:
 			ljestvica();
-			//goto unosMain;s
+			sortBodovi();
+			//goto unosMain;
 			break;
 		case 4:
+			traziIgraca();
+			//goto unosMain;
+			break;
+		case 5:
 			printf("\nZavrsetak programa.\n");
 			end = 0;
 			break;
