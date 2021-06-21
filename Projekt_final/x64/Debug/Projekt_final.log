@@ -1,6 +1,6 @@
 ﻿  pokerRuke.c
-D:\Poker_final\ProjektPoker-master\Projekt_final\pokerRuke.c(230,30): warning C4047: 'function': 'char **' differs in levels of indirection from 'char (*)[20]'
-D:\Poker_final\ProjektPoker-master\Projekt_final\pokerRuke.c(230,22): warning C4024: 'Swap': different types for formal and actual parameter 1
-D:\Poker_final\ProjektPoker-master\Projekt_final\pokerRuke.c(230,44): warning C4047: 'function': 'char **' differs in levels of indirection from 'char (*)[20]'
-D:\Poker_final\ProjektPoker-master\Projekt_final\pokerRuke.c(230,32): warning C4024: 'Swap': different types for formal and actual parameter 2
+D:\Poker_final\ProjektPoker-master\Projekt_final\pokerRuke.c(231,30): warning C4047: 'function': 'char **' differs in levels of indirection from 'char (*)[20]'
+D:\Poker_final\ProjektPoker-master\Projekt_final\pokerRuke.c(231,22): warning C4024: 'Swap': different types for formal and actual parameter 1
+D:\Poker_final\ProjektPoker-master\Projekt_final\pokerRuke.c(231,44): warning C4047: 'function': 'char **' differs in levels of indirection from 'char (*)[20]'
+D:\Poker_final\ProjektPoker-master\Projekt_final\pokerRuke.c(231,32): warning C4024: 'Swap': different types for formal and actual parameter 2
   Projekt_final.vcxproj -> D:\Poker_final\ProjektPoker-master\x64\Debug\Projekt_final.exe

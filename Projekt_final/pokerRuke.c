@@ -40,6 +40,19 @@ struct Karta dijeliKartu() {
 	}
 }
 
+FILE* otvoriFile() {
+    FILE* fp = NULL;
+    fp = fopen("ljestvica.txt", "a+");
+    if (fp == NULL)
+    {
+        printf("Datoteka se ne moze otvoriti.");
+        exit(EXIT_FAILURE);
+    }
+    else {
+        return fp;
+    }
+}
+
 void ispisiRuke() {
 	int i;
 	printf("Igrac %s ima:\n", sviIgraci[0].ime);
@@ -170,23 +183,11 @@ void usporediRuke() {
     }
 }
 
-FILE* otvoriFile() {
-	FILE* fp = NULL;
-    fp = fopen("ljestvica.txt", "a+");
-	if (fp == NULL)
-	{
-		printf("Datoteka se ne moze otvoriti.");
-		exit(EXIT_FAILURE);
-	}
-	else {
-		return fp;
-	}
-}
-
 void upisiFile() {
     FILE* fp = otvoriFile();
     fprintf(fp, "%s %d\n", sviIgraci[0].ime, sviIgraci[0].bodovi);
     fprintf(fp, "%s %d\n", sviIgraci[1].ime, sviIgraci[1].bodovi);
+    fclose(fp);
 }
 
 void bubbleSort(char a[][20], int n) {
@@ -313,7 +314,7 @@ void traziIgraca()
         if (strcmp(search, line[i]) == 0)
         {
             found = 1;
-            printf("Ime pronadeno u %d. retku nesortirane ljestvice\n", i + 1);
+            printf("Ime pronadeno u %d. retku nesortirane ljestvice.\n", i + 1);
         }
     }
     if (found == 0) printf("Igrac s trazenim imenom nije igrao ovu igru.");

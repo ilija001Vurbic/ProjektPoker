@@ -15,4 +15,13 @@ Branimir 700
 Brekalo 100
 Skoric 0
 Hrvoje 350
-Simun 550 
+Simun 550
+Josko 50
+Bruno 50
+Josko 150
+Tvrtko 350
+Peki 150
+Ivana 100
+Marija 0
+Ines 100
+Irena 0
